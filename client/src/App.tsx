@@ -5,10 +5,12 @@ import About from './pages/About.tsx';
 import Signup from './pages/Signup.tsx';
 import Dashboard from './pages/Dashboard.tsx';
 import Projects from './pages/Projects.tsx';
+import Header from './components/Header.tsx';
 
 const App = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/about' element={<About/>}/>
