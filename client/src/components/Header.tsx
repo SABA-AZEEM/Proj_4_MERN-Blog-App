@@ -1,16 +1,18 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass,faSun,faMoon } from '@fortawesome/free-solid-svg-icons'; 
 import { useState } from 'react';
 import { Navbar, TextInput } from 'flowbite-react';
 import { Link } from 'react-router-dom';
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import { CiSun } from "react-icons/ci";
+import { FaMoon } from "react-icons/fa";
 
 
 const Header = () => {
 
-  const [modeIcon, setModeIcon] = useState(faSun);
+  const [isDayMode, setIsDayMode] = useState(true);
   const [searchTerm, setSearchTerm]= useState('');
+
   const handleChangeIcon = ()=>{
-    modeIcon === faSun ? setModeIcon(faMoon) : setModeIcon(faSun) ;
+    setIsDayMode(prevMode => !prevMode)
   }
 
   const handleSubmit = ()=>{
@@ -28,33 +30,44 @@ const Header = () => {
         </span>
         Blog
       </Link>
+
       <form onSubmit={handleSubmit}>
         <TextInput 
           type='text'
           placeholder='Search...'
-          rightIcon={faMagnifyingGlass}
+          rightIcon={FaMagnifyingGlass}
           className='hidden lg:inline'
           value={searchTerm}
           onChange={(e)=>setSearchTerm(e.target.value)}
         />
       </form>
-      <div>
-        <nav>
-          <ul className='flex justify-between'>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/projects">Projects</a></li>
-          </ul>
-        </nav>
+      
+
+      <div className='flex  items-center justify-between'>
+        <div onClick={handleChangeIcon}>
+          <button>
+            {isDayMode? <CiSun /> : <FaMoon />}
+          </button>
+        </div>
+
+        <div>
+          <Link to="/signin">Sign In</Link>
+        </div>
+        <Navbar.Toggle />
       </div>
-      <div>
-        <button onClick={handleChangeIcon}>
-        <FontAwesomeIcon icon={modeIcon} />
-        </button>
-      </div>
-      <div>
-        <a href="/signin">Sign In</a>
-      </div>
+      
+      <Navbar.Collapse>
+        <Navbar.Link href='/'>
+          Home
+        </Navbar.Link>
+        <Navbar.Link  href='/about'>
+          About
+        </Navbar.Link>
+        <Navbar.Link href='/projects'>
+          Projects
+        </Navbar.Link>
+      </Navbar.Collapse>
+
     </Navbar>
   )
 }
