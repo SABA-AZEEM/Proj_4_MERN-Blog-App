@@ -1,0 +1,16 @@
+{
+  "name": "mern-blog",
+  "version": "1.0.0",
+  "description": "This is my blog website",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon api/index.js",
+    "start": "nodemon api/index.js"
+  },
+  "author": "Saba Azeem",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
